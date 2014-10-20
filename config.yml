@@ -1,0 +1,5 @@
+:port: 3002
+:daemon_threads: 2
+
+:certificate_path: /home/eugene/work/APNS_ruby_daemon/lib/support/e2_dev_apns.pem
+:apns_gateway: gateway.sandbox.push.apple.com

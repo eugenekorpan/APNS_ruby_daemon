@@ -1,9 +1,33 @@
-= APNS ruby daemon
+== APNS ruby daemon
 
-1 Use `daemons` gem for building daemon with ruby https://github.com/thuehlinger/daemons;
+= Installation
 
-2 Use `resque` gem for queue https://github.com/resque/resque;
+- gem install 'resque'
+- gem install 'daemons'
+- gem install 'APNS'
 
-3 Use `APNS` gem for APNS integration https://github.com/jpoz/APNS;
+= Usage
 
-4 Build API for integration with rails;
+1 Update configs in `config.yml` according to your needs
+2 run daemon `ruby apns_daemon.rb start`
+  other dameon options
+  `ruby apns_daemon.rb stop`
+  `ruby apns_daemon.rb restart`
+3 run resque for queue `QUEUE=* rake resque:work RESQUE_WORKER=true`
+4 to add job to the queue `ruby lib/adapter.rb [device token], [message]`
+
+= Integrating with Rails
+
+Just open adapter.rb and it should be pretty straigt forward.
+Usage sample:
+
+```
+  require 'socket/client'
+
+  device_token = 'some valid device token'
+  message = 'some text that will be send to APNS'
+
+  SocketClient.new({device_token: device_token,
+                    message: message}).perform
+
+```

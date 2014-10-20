@@ -2,7 +2,7 @@ require 'socket'
 require 'json'
 
 DEFAULT_HOST = 'localhost'
-DEFAULT_PORT = 2000
+DEFAULT_PORT = 3002
 
 class SocketClient
   attr_accessor :host, :port, :device_token, :message
