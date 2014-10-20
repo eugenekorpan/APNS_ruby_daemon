@@ -9,19 +9,27 @@
 = Usage
 
 1 Update configs in `config.yml` according to your needs
-2 run daemon `ruby apns_daemon.rb start`
-  other dameon options
-  `ruby apns_daemon.rb stop`
-  `ruby apns_daemon.rb restart`
-3 run resque for queue `QUEUE=* rake resque:work RESQUE_WORKER=true`
-4 to add job to the queue `ruby lib/adapter.rb [device token], [message]`
+
+2 run daemon 
+  ruby apns_daemon.rb start
+other daemon options
+  ruby apns_daemon.rb stop
+  ruby apns_daemon.rb restart
+  
+3 run resque for queue 
+
+  QUEUE=* rake resque:work RESQUE_WORKER=true
+
+4 to add job to the queue 
+
+  ruby lib/adapter.rb [device token], [message]
 
 = Integrating with Rails
 
 Just open adapter.rb and it should be pretty straigt forward.
 Usage sample:
 
-```
+
   require 'socket/client'
 
   device_token = 'some valid device token'
@@ -30,4 +38,3 @@ Usage sample:
   SocketClient.new({device_token: device_token,
                     message: message}).perform
 
-```
